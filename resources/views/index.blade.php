@@ -11,16 +11,17 @@
 
         <link rel="stylesheet" type="text/css" href="{{ url('/public/css/app.css') }}">
         <script>
-            const apiURL = "{{ url('/api/') }}"
+            const apiURL = "{{ url('/') }}"
+            window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!}
+            window.scheduleDates = {!! html_entity_decode($scheduleDates) !!}
+            window.schedules = {!! html_entity_decode($schedules); !!}
         </script>
     </head>
     <body>
         <div id="app">
             <weekly-schedule></weekly-schedule>
         </div>
-        <script>
-            const scheduleDates = <?php echo html_entity_decode($scheduleDates); ?>
-        </script>
+
         <script src="{{ url('/public/js/app.js') }}"></script>
     </body>
 </html>

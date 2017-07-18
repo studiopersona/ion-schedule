@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<featured :schedule-dates="scheduleDates"></featured>
-		<schedule :api-date="apiDate"></schedule>
+		<featured :schedule-dates="scheduleDates" v-on:new-date-selected="changeScheduleContent"></featured>
+		<schedule :schedules="schedules" :schedules-index="schedulesIndex"></schedule>
 	</div>
 </template>
 
@@ -22,18 +22,25 @@ export default {
 
 	data() {
 		return {
-			scheduleDates: scheduleDates,
-			apiDate: '',
+			scheduleDates: window.scheduleDates,
+			schedules: window.schedules,
+			schedulesIndex: 0,
 		}
 	},
 
-	created() {
-		this.apiDate = this.scheduleDates[0].apiDate
+	methods: {
+
+		changeScheduleContent(index) {
+			this.schedulesIndex = index
+		}
+
 	},
 
 	events: {
-		'new-date-selected'(newDate) {
-			this.apiDate = newDate
+		'new-date-selected'(index) {
+			console.log('new date selected')
+			console.log(index)
+			this.schedulesIndex = index
 		}
 	}
 }

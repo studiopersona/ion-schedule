@@ -5,9 +5,9 @@
             	<div class="col-xs-12">
                 	<div v-for="program in schedule" class="panel-group schedule" id="accordion" role="tablist" aria-multiselectable="false">
                 		<div class="panel panel-default schedule-item ">
-                			<div class="panel-heading" role="tab" :id="'program-heading-' + program.showID">
+                			<div class="panel-heading" role="tab" :id="'program-heading-' + program.timestamp">
                 				<div class="panel-title ">
-      								<div data-toggle="collapse" data-parent="#accordion" :href="'#program-' + program.showID" aria-expanded="" :aria-controls="'program-' + program.showID">
+      								<div data-toggle="collapse" data-parent="#accordion" :href="'#program-' + program.timestamp" aria-expanded="" :aria-controls="'program-' + program.timestamp">
       									<div class="container">
 	      									<div class="row">
 												<div class="col-xs-3 col-md-3">
@@ -23,7 +23,7 @@
 							      	</div>
 							    </div>
 							</div>
-							<div :id="'program-' + program.showID" class="panel-collapse collapse " role="tabpanel" :aria-labelledby="'program-heading-' + program.showID">
+							<div :id="'program-' + program.timestamp" class="panel-collapse collapse " role="tabpanel" :aria-labelledby="'program-heading-' + program.timestamp">
     							<div class="panel-body primary-bg-color">
     								<div class="container">
 		        						<div class="row">
@@ -56,42 +56,25 @@
 
 export default {
 
-	props: ['apiDate'],
+	props: ['schedules', 'schedulesIndex'],
 
 	data() {
 		return {
 			schedule: [],
-			apiURL: apiURL,
 		}
 	},
 
 	created() {
-		this.fetchSchedule()
+		this.schedule = this.schedules[0]
 	},
 
 	watch: {
-		apiDate: function() {
-			this.fetchSchedule()
+		schedulesIndex: function() {
+			this.schedule = this.schedules[this.schedulesIndex]
 		},
 	},
 
 	methods: {
-
-		fetchSchedule() {
-			this.$http.post(this.apiURL + '/schedule', {}, {
-				date: this.apiDate,
-			})
-			.then((res) => {
-				let response = res.json()
-				console.log(response)
-
-				// this.schedule = response.schedule
-			})
-			.catch(function(err) {
-				console.log('There was an error while fetching the schedule')
-				console.log(err)
-			})
-		},
 
 	},
 }

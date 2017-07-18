@@ -5,8 +5,9 @@
                     <div class="container-fluid">
                         <div class="col-xs-12 col-sm-12">
                             <div class="row-fluid">
+                                <div class="col-xs-12 col-sm-2"></div>
                                 <a  v-for="(date, index) in scheduleDates" @click="showSchedule(index)">
-                                    <div class="col-xs-12 col-sm-2" :class="[ (scheduleDates[index].selected) ? 'selected' : '' ]">
+                                    <div class="col-xs-12 col-sm-1" :class="[ (scheduleDates[index].selected) ? 'selected' : '' ]">
                                         <h3>
                                             <strong>{{ date.airDay }}</strong><br><span class="air-date">{{ date.airDate }}</span>
                                         </h3>
@@ -15,9 +16,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row blue-bar" style="margin:-5px 0; ">
-                    <div class="col-md-10 col-md-offset-1" style="height:4px; background-color: #00a3f6;"></div>
                 </div>
             </div>
 	</div>
@@ -35,25 +33,21 @@ export default {
 
     data() {
         return {
-            selectedDay: '',
+            selectedDayIndex: 0,
         }
-    },
-
-    created() {
-        this.selectedDay = this.scheduleDates[0].apiDate
     },
 
 	methods: {
 
         showSchedule(index) {
             console.log(index)
-            this.$emit('new-date-selected', this.scheduleDates[index].apiDate)
+            this.$emit('new-date-selected', index)
+
+            this.scheduleDates[this.selectedDayIndex].selected = false
+            this.scheduleDates[index].selected = true
+            this.selectedDayIndex = index
         },
 
 	},
-
-	events: {
-
-	}
 }
 </script>

@@ -4,7 +4,7 @@
 			<div class="container">
 		    	<h1 class="display-3 tune-in-time">Tonight, 8|7c PM</h1>
 		  	</div>
-		  	<days :schedule-dates="scheduleDates"></days>
+		  	<days v-on:new-date-selected="emitNewDateSelected" :schedule-dates="scheduleDates"></days>
 		</div>
 	</div>
 </template>
@@ -20,32 +20,12 @@ export default {
 
 	props: ['scheduleDates'],
 
-	data() {
-		return {
-
-		}
-	},
-
-	ready() {
-
-	},
-
-	watch: {
-
-	},
-
-	computed: {
-
-	},
-
 	methods: {
 
-
+		emitNewDateSelected(index) {
+			this.$emit('new-date-selected', index)
+		}
 
 	},
-
-	events: {
-
-	}
 }
 </script>
