@@ -10,10 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use GuzzleHttp\Client;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-
+use \GuzzleHttp\Client;
 
 Route::get('/', function () {
 	// setup week dates
