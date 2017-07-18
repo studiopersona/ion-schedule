@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<featured :schedule-dates="scheduleDates" v-on:new-date-selected="changeScheduleContent"></featured>
+		<featured :featured="featured" :schedule-dates="scheduleDates" v-on:new-date-selected="changeScheduleContent"></featured>
 		<schedule :schedules="schedules" :schedules-index="schedulesIndex"></schedule>
 	</div>
 </template>
@@ -25,6 +25,7 @@ export default {
 			scheduleDates: window.scheduleDates,
 			schedules: window.schedules,
 			schedulesIndex: 0,
+			featured: window.featured,
 		}
 	},
 

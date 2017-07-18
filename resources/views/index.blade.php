@@ -15,6 +15,7 @@
             window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!}
             window.scheduleDates = {!! html_entity_decode($scheduleDates) !!}
             window.schedules = {!! html_entity_decode($schedules); !!}
+            window.featured = {!! html_entity_decode($featured) !!}
         </script>
     </head>
     <body>

@@ -1,8 +1,8 @@
 <template>
 	<div>
-		<div class="jumbotron jumbotron-fluid featured-show">
+		<div class="jumbotron jumbotron-fluid featured-show" :style="'background-image:url(' + featured.image + ')'">
 			<div class="container">
-		    	<h1 class="display-3 tune-in-time">Tonight, 8|7c PM</h1>
+		    	<h1 class="display-3 tune-in-time">{{ featured.tune_in_time }}</h1>
 		  	</div>
 		  	<days v-on:new-date-selected="emitNewDateSelected" :schedule-dates="scheduleDates"></days>
 		</div>
@@ -18,7 +18,7 @@ export default {
 		days: Days,
 	},
 
-	props: ['scheduleDates'],
+	props: ['scheduleDates', 'featured'],
 
 	methods: {
 

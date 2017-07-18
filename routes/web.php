@@ -40,11 +40,13 @@ Route::get('/', function () {
 
     $response = new Collection(json_decode((string)$res->getBody()));
 
+    $featured = json_encode($response->take(1)->values()[0]->featured);
+
     $schedules = $response->map(function($date, $index) {
     	return $date->schedule;
     })
     ->values()
     ->toJson();
 
-    return view('index', compact('scheduleDates', 'schedules'));
+    return view('index', compact('scheduleDates', 'schedules', 'featured'));
 });
