@@ -3,17 +3,10 @@
 		<div class="container-fluid hidden-xs schedule-dates-wrapper">
                 <div class="row schedule-dates text-center">
                     <div class="container-fluid">
-                        <!--<div v-for="date in scheduleDates" class="col-xs-8 col-sm-1 col-sm-offset-1 col-md-1 start-of-week selected">
-                            <a @click="showSchedule(date.apiDate)">
-                                <h3 class="">
-                                    <strong>{{ date.airDay }}</strong><br><span class="air-date">{{ date.airDate }}</span>
-                                </h3>
-                            </a>
-                        </div>-->
-                        <div class="col-xs-12 col-sm-8">
+                        <div class="col-xs-12 col-sm-12">
                             <div class="row-fluid">
-                                <a  v-for="date in scheduleDates" @click="showSchedule(date.apiDate)">
-                                    <div class="col-xs-12 col-sm-2 ">
+                                <a  v-for="(date, index) in scheduleDates" @click="showSchedule(index)">
+                                    <div class="col-xs-12 col-sm-2" :class="[ (scheduleDates[index].selected) ? 'selected' : '' ]">
                                         <h3>
                                             <strong>{{ date.airDay }}</strong><br><span class="air-date">{{ date.airDate }}</span>
                                         </h3>
@@ -40,11 +33,21 @@ export default {
 
 	props: ['scheduleDates'],
 
+    data() {
+        return {
+            selectedDay: '',
+        }
+    },
+
+    created() {
+        this.selectedDay = this.scheduleDates[0].apiDate
+    },
+
 	methods: {
 
-        showSchedule(date) {
-            console.log(date)
-
+        showSchedule(index) {
+            console.log(index)
+            this.$emit('new-date-selected', this.scheduleDates[index].apiDate)
         },
 
 	},

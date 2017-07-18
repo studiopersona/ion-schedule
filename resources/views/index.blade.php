@@ -10,13 +10,16 @@
         <title>Ion Schedule</title>
 
         <link rel="stylesheet" type="text/css" href="{{ url('/public/css/app.css') }}">
+        <script>
+            const apiURL = "{{ url('/api/') }}"
+        </script>
     </head>
     <body>
         <div id="app">
             <weekly-schedule></weekly-schedule>
         </div>
         <script>
-            let scheduleDates = <?php echo html_entity_decode($scheduleDates); ?>
+            const scheduleDates = <?php echo html_entity_decode($scheduleDates); ?>
         </script>
         <script src="{{ url('/public/js/app.js') }}"></script>
     </body>

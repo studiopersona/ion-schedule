@@ -8061,45 +8061,11 @@ a:focus {
 }
 
 @media (min-width: 320px) {
-  .left .ad-image, .right .ad-image, .ad-image {
-    padding: 0 !important;
-  }
-  .slider .holder img.featured-image, .slider img.featured-image, .banner-gradient {
-    display: none;
-  }
-  .slider .holder #carousel-image-mobile, .slider #carousel-image-mobile {
-    display: block;
-    width: 100%;
-    margin-left: 0px;
-  }
-  .slider .carousel-indicators {
-    bottom: -1.5%;
-    opacity: 0.5;
-  }
-  .slider .holder {
-    width: 100%;
-    height: 100%;
-  }
-  .slider .carousel {
-    height: 535px;
-  }
-  .carousel-inner {
-    height: 100%;
-  }
-  .qubo-kids-corner .content-box-lg img {
-    width: 130% !important;
-    max-width: none;
-    left: -15%;
-  }
-  .visible-xs-block .carousel-ad a {
-    position: relative !important;
-    left: 0 !important;
-    top: 10px;
-  }
   .featured-show {
     background: url("../img/mobile-schedule-banner.jpg") left top/cover no-repeat;
     height: calc(100vw * 0.351351351);
     position: relative;
+    overflow: hidden;
   }
   .jumbotron h1.tune-in-time {
     position: absolute;
@@ -8169,6 +8135,13 @@ a:focus {
   background-color: #00a3f6;
   color: #000;
   transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.schedule-dates div div div.selected:hover {
+  background: transparent;
+  color: #fff;
+  cursor: default;
 }
 
 .scedule-dates strong {
@@ -8372,6 +8345,10 @@ span.mobile-date {
   font-weight: normal;
   font-size: 18px;
   white-space: nowrap;
+}
+
+.schedule-dates .selected strong {
+  color: #00a3f6;
 }
 
 /** schedule classes **/
