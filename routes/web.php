@@ -12,5 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	$scheduleDates = [];
+
+	for($i = 0; $i < 7; $i++) {
+		array_push($scheduleDates, [
+			'apiDate' => date('Y-m-d', strtotime('now +'.$i.' day')),
+			'airDay' => date('D', strtotime('now +'.$i.' day')),
+			'airDate' => date('M j', strtotime('now +'.$i.' day')),
+		]);
+	}
+
+	$scheduleDates = json_encode($scheduleDates);
+
+    return view('index', compact('scheduleDates'));
 });
